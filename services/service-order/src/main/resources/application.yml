@@ -1,0 +1,36 @@
+server:
+  port: 9009
+spring:
+  profiles:
+    active: test
+    include: feign
+  application:
+    name: service-order
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:13848
+      config:
+        namespace: ${spring.profiles.active:dev}
+
+
+
+logging:
+  level:
+    org.eee.order.feign: debug
+
+---
+spring:
+  config:
+    import:
+      - nacos:common.properties?group=order
+    activate:
+      on-profile: dev
+
+---
+spring:
+  config:
+    import:
+      - nacos:common.properties?group=order
+    activate:
+      on-profile: test
+
