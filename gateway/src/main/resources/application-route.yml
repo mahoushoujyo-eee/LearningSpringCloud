@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: order-route
+          uri: lb://service-order
+          predicates:
+            - Path=/api/order/**
+        - id: product-route
+          uri: lb://service-product
+          predicates:
+            - Path=/api/product/**
+      default-filters:
+        - AddResponseHeader=X-Response-Default, Default
+        - RewritePath=/api/(?<segment>.*), /$\{segment}

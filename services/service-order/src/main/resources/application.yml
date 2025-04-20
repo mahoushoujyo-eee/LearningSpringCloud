@@ -11,6 +11,11 @@ spring:
       server-addr: 127.0.0.1:13848
       config:
         namespace: ${spring.profiles.active:dev}
+    sentinel:
+      transport:
+        dashboard: localhost:8858
+      eager: true
+      web-context-unify: false
 
 
 

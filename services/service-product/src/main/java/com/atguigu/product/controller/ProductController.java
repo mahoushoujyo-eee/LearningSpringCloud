@@ -16,8 +16,7 @@ public class ProductController
     private ProductService productService;
 
     @RequestMapping("/{id}")
-    public Product getProduct(@PathVariable("id") Long productId)
-    {
+    public Product getProduct(@PathVariable("id") Long productId) throws InterruptedException {
         System.out.println("product");
         return productService.getProduct(productId);
     }
